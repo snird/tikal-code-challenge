@@ -5,7 +5,6 @@ const getPgClient = require("./helper")
 const fillDummyData = async () => {
 	const client = await getPgClient()
 	for (let mission of dummyData) {
-		console.log(mission)
 		await findOrCreateAgent(client, mission.agent)
 		await createMission(client, mission)
 	}
@@ -17,7 +16,6 @@ const createMission = async (client, mission) => {
 	const createMissionQuery = `
         INSERT INTO missions(agent_id, country, address, date) VALUES('${mission.agent}', '${mission.country}', '${mission.address}', '${mission.date}') RETURNING *
     `
-	console.log(createMissionQuery)
 	const missionCreationQuery = await client.query(createMissionQuery)
 	return missionCreationQuery.rows[0]
 }
