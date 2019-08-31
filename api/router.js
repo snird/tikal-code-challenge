@@ -1,12 +1,12 @@
 const Router = require("koa-router")
 
-const apiRouter = (DAL) => {
+const apiRouter = async (DAL) => {
 	const router = new Router({
 		prefix: "/api/v1"
 	})
     
 	router.use(async (ctx, next) => {
-		ctx.DAL = DAL || require("./dal")
+		ctx.DAL = DAL || await require("./dal")()
 		await next()
 	})
     

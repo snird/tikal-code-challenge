@@ -1,8 +1,8 @@
 
 
-const countriesByIsolation = (ctx) => {
-	console.log("im here")
-	const data = ctx.DAL.countriesByIsolation()
+const countriesByIsolation = async (ctx) => {
+	const data = await ctx.DAL.countriesByIsolation()
+	// eslint-disable-next-line require-atomic-updates
 	ctx.body = {
 		data
 	}

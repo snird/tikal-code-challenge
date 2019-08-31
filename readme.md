@@ -97,6 +97,7 @@ We will have 2 distinct tables:
 - Foreign key `agent_id`
 - String `country`
 - String `address`
+- Timestamp `date`
 
 (As you can see, I will store longtitude and latitude directly, which means I will have a module translating back and forth from real address)
 
@@ -106,7 +107,7 @@ I need to find the country with the highest isolation degree - meaning the count
 Normally, this will require going through all the missions and looking at the agent and country for each, then filtering by agents with missions only in one country and then group by country and order.
 The sql query for such thing will look something like that:
 ```sql
- SELECT Count(country) AS isolated_agents_in_country,
+SELECT Count(country) AS isolated_agents_in_country,
        country
 -- Subquery for getting isolated agents and their countries
 FROM   (SELECT agent_id                AS agent_id,

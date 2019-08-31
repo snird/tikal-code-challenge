@@ -12,8 +12,8 @@ siteRouter.get("/", (ctx) => {
 })
 
 
-const server = (DAL) => {
-	const apiRouterWithDAL = apiRouter(DAL)
+const server = async (DAL) => {
+	const apiRouterWithDAL = await apiRouter(DAL)
 	app
 	// Initialize routes
 		.use(siteRouter.routes())
