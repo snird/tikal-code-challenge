@@ -4,7 +4,9 @@
   "description": "Tikal code challenge",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "initializeDBTables": "node ./api/scripts/db/initialize_table.js",
+    "setUpDummyData": "node ./api/script/db/fill_dummy_data.js"
   },
   "jest": {
     "testEnvironment": "node"

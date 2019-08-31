@@ -23,6 +23,7 @@ Given a data set of agents operating in different countries we need to apply 2 e
     - [Install (Ubuntu)](#install-ubuntu)
       - [Nodejs](#nodejs)
       - [Postgres](#postgres)
+    - [Initialize environment](#initialize-environment)
 
 ### The data set
 The missions dataset consists of:
@@ -95,8 +96,7 @@ We will have 2 distinct tables:
 - Primary Key `id` - mission id
 - Foreign key `agent_id`
 - String `country`
-- Float `longtitude`
-- Float `latitude`
+- String `address`
 
 (As you can see, I will store longtitude and latitude directly, which means I will have a module translating back and forth from real address)
 
@@ -169,7 +169,7 @@ sudo apt install postgresql postgresql-contrib
 ```
 
 ```
-# Switch to the posgres user
+# Switch to the postgres user
 sudo -i -u postgres
 # Create a user interactivelt. Choose name `snir` and make it super
 createuser --interactive
@@ -181,4 +181,14 @@ psql
 psql=# alter user snir with encrypted password 'tikalpass';
 # give the user access to the db
 grant all privileges on database tikal to snir;
+```
+
+### Initialize environment
+After having the DB and node installed, set up the environment itself with these scripts provided:
+
+```
+# Create the DB tables empty
+npm run initializeDBTables
+# Put in some dummy data to play with
+npm run setUpDummyData
 ```
