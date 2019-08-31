@@ -19,6 +19,10 @@ Given a data set of agents operating in different countries we need to apply 2 e
   - [Algorithms implementation details](#algorithms-implementation-details)
     - [Most isolated country](#most-isolated-country)
     - [Find closest and furthest missions from an address](#find-closest-and-furthest-missions-from-an-address)
+  - [Running this code (Ubuntu)](#running-this-code-ubuntu)
+    - [Install (Ubuntu)](#install-ubuntu)
+      - [Nodejs](#nodejs)
+      - [Postgres](#postgres)
 
 ### The data set
 The missions dataset consists of:
@@ -145,3 +149,36 @@ So I will simply use the [distance matrix](https://developers.google.com/maps/do
 For any address that will be put into the endpoint, I will calculate distance to every mission distance and take max and min.
 This will be O(n) time complexity, where n is the amount of missions we have.
 
+
+## Running this code (Ubuntu)
+To run this code you'll need to have:
+- nodejs 12
+- postgresql
+
+### Install (Ubuntu)
+#### Nodejs
+```
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+#### Postgres
+Install Postgres itself:
+```
+sudo apt install postgresql postgresql-contrib
+```
+
+```
+# Switch to the posgres user
+sudo -i -u postgres
+# Create a user interactivelt. Choose name `snir` and make it super
+createuser --interactive
+# Create a db
+createdb tikal
+# Go to the posgress cli
+psql
+# give our user a password
+psql=# alter user snir with encrypted password 'tikalpass';
+# give the user access to the db
+grant all privileges on database tikal to snir;
+```
