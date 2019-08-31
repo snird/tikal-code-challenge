@@ -3,9 +3,9 @@ const request = require("supertest")
 const server = require("../../index")
 describe("routes: countries-by-isolation", () => {
 	test("should respond as expected", async () => {
-		const serverWithFakes = server()
+		const serverWithRealDB = server()
         
-		const response = await request(serverWithFakes).get("/api/v1/countries-by-isolation")
+		const response = await request(serverWithRealDB).get("/api/v1/countries-by-isolation")
 		expect(response.status).toEqual(200)
 		expect(response.type).toEqual("application/json")
 		expect(response.body.data).toEqual({
@@ -13,6 +13,6 @@ describe("routes: countries-by-isolation", () => {
 		})
         
 		// Teardown
-		serverWithFakes.close()
+		serverWithRealDB.close()
 	})
 })
